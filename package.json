@@ -1,0 +1,16 @@
+{
+  "name": "com.brix.extensions",
+  "displayName": "Brix Extensions",
+  "description": "Extensions for the Brix unity framework",
+  "version": "1.0.0",
+  "unity": "2019.3",
+  "dependencies": {
+    "com.brix.soa.common": "https://github.com/ljardim/brix-scriptableobject-architecture-common.git#1.0.0",
+    "com.brix.state": "https://github.com/ljardim/brix-state.git#v1.0.0"
+  },
+  "keywords": [
+    "state",
+    "architecture"
+  ],
+  "category": "Tools"
+}

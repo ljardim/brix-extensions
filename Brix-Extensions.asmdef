@@ -1,0 +1,8 @@
+﻿{
+  "name": "Brix-Extensions",
+  "references": [
+    "ScriptableObject-Architecture",
+    "Brix-ScriptableObject-Architecture-Common",
+    "Brix-State"
+  ]
+}
