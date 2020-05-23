@@ -1,8 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Brix.Extensions {
     public static class Constants {
+        public enum Axis {
+            X,
+            Y,
+            Z
+        }
+
         public enum Direction {
             Forward,
             Backward,
@@ -10,6 +18,12 @@ namespace Brix.Extensions {
             Right,
             Down,
             Up
+        }
+
+        public enum KeyState {
+            OnDown,
+            OnCurrent,
+            OnUp
         }
 
         public enum PhysicsCastType {

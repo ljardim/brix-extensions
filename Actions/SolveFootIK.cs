@@ -1,6 +1,5 @@
 ﻿using UnityAtoms;
 using UnityAtoms.BaseAtoms;
-using UnityAtoms.Brix;
 using UnityEngine;
 
 namespace Brix.Extensions {
@@ -12,9 +11,7 @@ namespace Brix.Extensions {
         [SerializeField]private StringReference targetAnimCurve;
         [SerializeField]private FloatReference originOffset = new FloatReference(0.2f);
         [SerializeField]private FloatReference feetOffset = new FloatReference(0.1f);
-
-        [SerializeField]private AnimatorReference animator;
-        [SerializeField]private TransformReference targetFootTransform;
+        [SerializeField]private GameObjectReference target;
 
         public override void Do() {
             if (ikGoal != AvatarIKGoal.LeftFoot || ikGoal != AvatarIKGoal.RightFoot) {
@@ -22,12 +19,17 @@ namespace Brix.Extensions {
                 return;
             }
 
-            var anim = animator.Value;
-            var targetFoot = targetFootTransform.Value;
+            var animator = target.Value.GetComponent<Animator>();
+            if (animator == null) {
+                Debug.Log("No Animator component on target GameObject");
+                return;
+            }
+
+            var targetFoot = animator.GetBoneTransform(ikGoal == AvatarIKGoal.LeftFoot ? HumanBodyBones.LeftFoot : HumanBodyBones.RightFoot);
 
             var originTransform = targetFoot;
 
-            var weight = anim.GetFloat(targetAnimCurve.Value);
+            var weight = animator.GetFloat(targetAnimCurve.Value);
 
             var origin = originTransform.position;
             origin.y += originOffset.Value;
@@ -38,8 +40,8 @@ namespace Brix.Extensions {
                 targetPosition = hit.point + (Vector3.up * feetOffset.Value);
             }
 
-            anim.SetIKPositionWeight(ikGoal, weight);
-            anim.SetIKPosition(ikGoal, targetPosition);
+            animator.SetIKPositionWeight(ikGoal, weight);
+            animator.SetIKPosition(ikGoal, targetPosition);
         }
     }
 }

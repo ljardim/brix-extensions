@@ -1,6 +1,5 @@
 ﻿using UnityAtoms;
 using UnityAtoms.BaseAtoms;
-using UnityAtoms.Brix;
 using UnityEngine;
 
 namespace Brix.Extensions {
@@ -9,7 +8,7 @@ namespace Brix.Extensions {
     public class GroundedCheckPhysics : AtomAction {
         [Header("Inputs")]
         [SerializeField]private LayerMask ignoreLayers;
-        [SerializeField]private TransformReference targetTransform;
+        [SerializeField]private GameObjectReference targetGameObject;
         
         [Header("Configuration")]
         [SerializeField]private FloatReference offsetFromTargetTransformPosition = new FloatReference(0.7f);
@@ -23,7 +22,7 @@ namespace Brix.Extensions {
         [SerializeField]private BoolReference groundedBool;
         
         public override void Do() {
-            var origin = targetTransform.Value.position;
+            var origin = targetGameObject.Value.transform.position;
             origin.y += offsetFromTargetTransformPosition.Value;
             var direction = Constants.DirectionMap[rayCastDirection];
             var distance = groundedBool.Value ? groundedRayCastDistance : inAirGroundedRayCastDistance;
