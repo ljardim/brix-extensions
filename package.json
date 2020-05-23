@@ -2,11 +2,11 @@
   "name": "com.brix.extensions",
   "displayName": "Brix Extensions",
   "description": "Extensions for the Brix unity framework",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "unity": "2019.3",
   "dependencies": {
-    "com.brix.soa.common": "https://github.com/ljardim/brix-scriptableobject-architecture-common.git#1.0.0",
-    "com.brix.state": "https://github.com/ljardim/brix-state.git#v1.0.0"
+    "com.mambojambostudios.unity-atoms": "https://github.com/AdamRamberg/unity-atoms.git#master",
+    "com.brix.state": "https://github.com/ljardim/brix-state.git#v1.0.2"
   },
   "keywords": [
     "state",

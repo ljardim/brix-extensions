@@ -1,5 +1,5 @@
 ﻿using Brix.State;
-using ScriptableObjectArchitecture;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
 namespace Brix.Extensions {

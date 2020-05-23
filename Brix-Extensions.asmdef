@@ -1,8 +1,9 @@
 ﻿{
   "name": "Brix-Extensions",
   "references": [
-    "ScriptableObject-Architecture",
-    "Brix-ScriptableObject-Architecture-Common",
+    "MamboJamboStudios.UnityAtomsCore.Runtime",
+    "MamboJamboStudios.UnityAtomsCore.Editor",
+    "MamboJamboStudios.UnityAtomsBaseAtoms.Runtime",
     "Brix-State"
   ]
 }

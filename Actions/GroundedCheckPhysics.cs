@@ -1,14 +1,15 @@
-﻿using ScriptableObjectArchitecture;
-using SOA.Common;
+﻿using UnityAtoms;
+using UnityAtoms.BaseAtoms;
+using UnityAtoms.Brix;
 using UnityEngine;
 
 namespace Brix.Extensions {
-    [FileIcon("brix-icon-action")] 
+    [EditorIcon("atom-icon-purple")]
     [CreateAssetMenu(menuName = Constants.Menus.ACTIONS + "Grounded Check - Physics")]
-    public class GroundedCheckPhysics : Action {
+    public class GroundedCheckPhysics : AtomAction {
         [Header("Inputs")]
         [SerializeField]private LayerMask ignoreLayers;
-        [SerializeField]private ObjectReference targetTransform;
+        [SerializeField]private TransformReference targetTransform;
         
         [Header("Configuration")]
         [SerializeField]private FloatReference offsetFromTargetTransformPosition = new FloatReference(0.7f);
@@ -21,13 +22,8 @@ namespace Brix.Extensions {
         [Header("Outputs")]
         [SerializeField]private BoolReference groundedBool;
         
-        public override void Execute() {
-            if (!(targetTransform.Value is Transform target)) {
-                Debug.Log("GroundedCheckPhysics - Target transform reference is not a Transform");
-                return;
-            }
-
-            var origin = target.position;
+        public override void Do() {
+            var origin = targetTransform.Value.position;
             origin.y += offsetFromTargetTransformPosition.Value;
             var direction = Constants.DirectionMap[rayCastDirection];
             var distance = groundedBool.Value ? groundedRayCastDistance : inAirGroundedRayCastDistance;

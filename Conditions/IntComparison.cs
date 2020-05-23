@@ -1,5 +1,5 @@
 ﻿using Brix.State;
-using ScriptableObjectArchitecture;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
 namespace Brix.Extensions {
@@ -8,7 +8,7 @@ namespace Brix.Extensions {
         [SerializeField]private IntReference valueToCheck;
         [SerializeField]private IntReference expectedValue;
         public override bool CheckCondition() {
-            return valueToCheck.Value.Equals(expectedValue.Value);
+            return valueToCheck.Equals(expectedValue);
         }
     }
 }

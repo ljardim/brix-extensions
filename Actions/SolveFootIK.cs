@@ -1,32 +1,29 @@
-﻿using ScriptableObjectArchitecture;
-using SOA.Common;
+﻿using UnityAtoms;
+using UnityAtoms.BaseAtoms;
+using UnityAtoms.Brix;
 using UnityEngine;
 
 namespace Brix.Extensions {
-    [FileIcon("brix-icon-action")]
+    [EditorIcon("atom-icon-purple")]
     [CreateAssetMenu(menuName = Constants.Menus.ACTIONS + "Solve Foot IK")]
-    public class SolveFootIK : Action {
+    public class SolveFootIK : AtomAction {
         [SerializeField]private LayerMask ignoreLayers;
         [SerializeField]private AvatarIKGoal ikGoal;
         [SerializeField]private StringReference targetAnimCurve;
         [SerializeField]private FloatReference originOffset = new FloatReference(0.2f);
         [SerializeField]private FloatReference feetOffset = new FloatReference(0.1f);
 
-        [SerializeField]private ObjectReference animator;
-        [SerializeField]private ObjectReference targetFootTransform;
+        [SerializeField]private AnimatorReference animator;
+        [SerializeField]private TransformReference targetFootTransform;
 
-        public override void Execute() {
+        public override void Do() {
             if (ikGoal != AvatarIKGoal.LeftFoot || ikGoal != AvatarIKGoal.RightFoot) {
                 Debug.Log("SolveFootIk only supports IkGoals for LeftFoot and RightFoot");
                 return;
             }
-            if (!(animator.Value is Animator) || !(targetFootTransform.Value is Transform)) {
-                Debug.Log("SolveFootIk animator reference should be an Animator and Target Foot Transform should be Transform references but one of them are not");
-                return;
-            }
 
-            var anim = (Animator) animator.Value;
-            var targetFoot = (Transform) targetFootTransform.Value;
+            var anim = animator.Value;
+            var targetFoot = targetFootTransform.Value;
 
             var originTransform = targetFoot;
 

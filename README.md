@@ -3,4 +3,4 @@
 Extensions for the Brix unity framework
 
 * [Brix State](https://github.com/ljardim/brix-state)
-* [SOA Common](https://github.com/ljardim/brix-scriptableobject-architecture-common)
+* [Unity Atoms](https://github.com/AdamRamberg/unity-atoms)
