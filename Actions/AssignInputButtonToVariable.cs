@@ -10,20 +10,34 @@ namespace Brix.Extensions {
         [Header("Inputs")]
         [SerializeField]private StringReference buttonName;
         [SerializeField]private Constants.KeyState targetKeyState;
+        [SerializeField]private BoolReference onlyAssignTrue = new BoolReference(false);
 
         [Header("Outputs")]
         [SerializeField]private BoolReference variable;
 
         public override void Do() {
+            bool buttonPressed;
             switch (targetKeyState) {
                 case Constants.KeyState.OnDown:
-                    variable.Value = Input.GetButtonDown(buttonName.Value);
+                    buttonPressed = Input.GetButtonDown(buttonName.Value);
+                    if (onlyAssignTrue && !buttonPressed) {
+                        return;
+                    }
+                    variable.Value = buttonPressed;
                     break;
                 case Constants.KeyState.OnCurrent:
-                    variable.Value = Input.GetButton(buttonName.Value);
+                    buttonPressed = Input.GetButton(buttonName.Value);
+                    if (onlyAssignTrue && !buttonPressed) {
+                        return;
+                    }
+                    variable.Value = buttonPressed;
                     break;
                 case Constants.KeyState.OnUp:
-                    variable.Value = Input.GetButtonUp(buttonName.Value);
+                    buttonPressed = Input.GetButtonUp(buttonName.Value);
+                    if (onlyAssignTrue && !buttonPressed) {
+                        return;
+                    }
+                    variable.Value = buttonPressed;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

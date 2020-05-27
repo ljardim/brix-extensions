@@ -13,10 +13,14 @@ namespace Brix.Extensions {
         public override void Do() {
             var animator = target.Value.GetComponent<Animator>();
             if (animator == null) {
-                Debug.Log("No Animator component on target GameObject");
-            } else {
-                animator.SetInteger(parameterName.Value, input.Value);
+                animator = target.Value.GetComponentInChildren<Animator>();
+                if (animator == null) {
+                    Debug.Log("No Animator component on target GameObject");
+                    return;
+                }
             }
+
+            animator.SetInteger(parameterName.Value, input.Value);
         }
     }
 }

@@ -19,6 +19,20 @@ namespace Brix.Extensions {
             Down,
             Up
         }
+        
+        public enum Comparison {
+            Equals,
+            NotEquals,
+            GreaterThan,
+            GreaterThanEquals,
+            LessThan,
+            LessThanEquals
+        }
+        
+        public enum Operator {
+            And,
+            Or
+        }
 
         public enum KeyState {
             OnDown,

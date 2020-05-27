@@ -13,6 +13,10 @@ namespace Brix.Extensions {
 
         public override void Do() {
             var animator = gameObject.Value.GetComponent<Animator>();
+            if (animator == null) {
+                animator = gameObject.Value.GetComponentInChildren<Animator>();
+            }
+            
             if (animator != null) {
                 target.Value = animator.GetFloat(inputAnimName.Value);
             } else {

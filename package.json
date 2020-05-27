@@ -2,7 +2,7 @@
   "name": "com.brix.extensions",
   "displayName": "Brix Extensions",
   "description": "Extensions for the Brix unity framework",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "unity": "2019.3",
   "dependencies": {
     "com.mambojambostudios.unity-atoms": "https://github.com/AdamRamberg/unity-atoms.git#master",
